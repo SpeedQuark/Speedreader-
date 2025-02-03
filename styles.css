@@ -32,7 +32,23 @@ h1 {
     margin-right: auto;
 }
 
-#start, #stop {
+.mensaje {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.resultado {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.botones {
+    margin-top: 20px;
+}
+
+.botones button {
     font-size: 18px;
     padding: 10px 20px;
     margin: 10px 5px;
@@ -58,34 +74,15 @@ h1 {
     background-color: #c82333;
 }
 
-.mensaje {
-    margin-top: 20px;
-    font-size: 20px;
-    font-weight: bold;
+#ok, #no {
+    background-color: #007bff;
 }
 
-.botones button {
-    font-size: 18px;
-    padding: 10px 20px;
-    margin: 10px 5px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
+#ok:hover, #no:hover {
+    background-color: #0056b3;
 }
 
 .botones button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
-}
-
-.botones button:hover:not(:disabled) {
-    background-color: #0056b3;
-}
-
-.resultado {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
 }
