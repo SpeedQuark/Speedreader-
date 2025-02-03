@@ -1,10 +1,23 @@
-// Listas de sujetos, verbos y predicados
-const sujetos = ["El gato", "El perro", "La niña", "El hombre", "La mujer"];
-const verbos = ["come", "corre", "salta", "lee", "escribe"];
-const predicados = ["en la casa", "en el parque", "bajo la lluvia", "sobre la mesa", "en el jardín"];
+// Listas de sujetos, verbos y predicados (triplicadas)
+const sujetos = [
+    "El gato", "El perro", "La niña", "El hombre", "La mujer",
+    "El pájaro", "El niño", "El profesor", "La abuela", "El coche",
+    "La bicicleta", "El árbol", "El libro", "La silla", "El teléfono"
+];
+const verbos = [
+    "come", "corre", "salta", "lee", "escribe",
+    "canta", "baila", "nada", "vuela", "dibuja",
+    "construye", "rompe", "repara", "observa", "escucha"
+];
+const predicados = [
+    "en la casa", "en el parque", "bajo la lluvia", "sobre la mesa", "en el jardín",
+    "en la montaña", "en el río", "en la playa", "en el bosque", "en la ciudad",
+    "en el coche", "en la escuela", "en el trabajo", "en el supermercado", "en el cine"
+];
 
 // Elementos del DOM
 const startButton = document.getElementById("start");
+const stopButton = document.getElementById("stop");
 const fraseElement = document.getElementById("frase");
 const okButton = document.getElementById("ok");
 const noButton = document.getElementById("no");
@@ -16,6 +29,7 @@ let tiempoInicio = 0;
 let tiemposReaccion = [];
 let respuestasIncorrectas = 0;
 let contadorFrases = 0;
+let intervalo;
 
 // Función para generar una frase aleatoria (correcta o incorrecta)
 function generarFrase() {
@@ -39,11 +53,14 @@ function generarFrase() {
 
 // Función para evaluar la respuesta
 function evaluarRespuesta(esCorrecta) {
-    const tiempoReaccion = Date.now() - tiempoInicio; // Calcular tiempo de reacción
+    const tiempoReaccion = Date.now() - tiempoInicio; // Calcular tiempo de reacción en ms
     tiemposReaccion.push(tiempoReaccion); // Guardar el tiempo de reacción
 
+    // Ocultar la frase
+    fraseElement.textContent = "";
+
     // Mostrar el tiempo de reacción
-    mensajeElement.textContent = `Tiempo de reacción: ${(tiempoReaccion / 1000).toFixed(2)} segundos`;
+    mensajeElement.textContent = `Tiempo de reacción: ${tiempoReaccion} ms`;
     mensajeElement.style.color = "black";
 
     // Verificar si la respuesta es correcta
@@ -63,7 +80,6 @@ function evaluarRespuesta(esCorrecta) {
         finalizarJuego();
     } else {
         // Espacio en blanco de 500 ms antes de la siguiente frase
-        fraseElement.textContent = "";
         setTimeout(generarFrase, 500);
     }
 }
@@ -76,22 +92,45 @@ function esFraseCorrecta(frase) {
 
 // Función para finalizar el juego
 function finalizarJuego() {
+    clearInterval(intervalo); // Detener el temporizador
     const tiempoTotal = tiemposReaccion.reduce((a, b) => a + b, 0);
     const tiempoPromedio = (tiempoTotal + respuestasIncorrectas * 200) / 10; // Añadir penalización
-    resultadoElement.textContent = `Tiempo promedio de reacción: ${(tiempoPromedio / 1000).toFixed(2)} segundos`;
+    resultadoElement.textContent = `Tiempo promedio de reacción: ${tiempoPromedio.toFixed(0)} ms`;
     resultadoElement.style.color = "black";
     startButton.disabled = false; // Habilitar el botón "Start"
+    stopButton.disabled = true; // Deshabilitar el botón "Stop"
+    limpiarPantalla();
+}
+
+// Función para limpiar la pantalla
+function limpiarPantalla() {
+    fraseElement.textContent = "";
+    mensajeElement.textContent = "";
+}
+
+// Función para detener el juego
+function detenerJuego() {
+    clearInterval(intervalo); // Detener el temporizador
+    startButton.disabled = false; // Habilitar el botón "Start"
+    stopButton.disabled = true; // Deshabilitar el botón "Stop"
+    limpiarPantalla();
+    resultadoElement.textContent = "Juego detenido";
 }
 
 // Evento para iniciar el juego
 startButton.addEventListener("click", () => {
     startButton.disabled = true; // Deshabilitar el botón "Start"
+    stopButton.disabled = false; // Habilitar el botón "Stop"
     contadorFrases = 0;
     tiemposReaccion = [];
     respuestasIncorrectas = 0;
     resultadoElement.textContent = "";
+    limpiarPantalla();
     generarFrase();
 });
+
+// Evento para detener el juego
+stopButton.addEventListener("click", detenerJuego);
 
 // Eventos de los botones
 okButton.addEventListener("click", () => evaluarRespuesta(true));
