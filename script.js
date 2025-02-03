@@ -1,18 +1,15 @@
-// Listas de sujetos, verbos y predicados (triplicadas)
+// Listas de sujetos, verbos y predicados (frases cortas)
 const sujetos = [
     "El gato", "El perro", "La niña", "El hombre", "La mujer",
-    "El pájaro", "El niño", "El profesor", "La abuela", "El coche",
-    "La bicicleta", "El árbol", "El libro", "La silla", "El teléfono"
+    "El pájaro", "El niño", "El profesor", "La abuela"
 ];
 const verbos = [
     "come", "corre", "salta", "lee", "escribe",
-    "canta", "baila", "nada", "vuela", "dibuja",
-    "construye", "rompe", "repara", "observa", "escucha"
+    "canta", "baila", "nada", "vuela"
 ];
 const predicados = [
     "en la casa", "en el parque", "bajo la lluvia", "sobre la mesa", "en el jardín",
-    "en la montaña", "en el río", "en la playa", "en el bosque", "en la ciudad",
-    "en el coche", "en la escuela", "en el trabajo", "en el supermercado", "en el cine"
+    "en la montaña", "en el río", "en la playa"
 ];
 
 // Elementos del DOM
@@ -99,6 +96,8 @@ function finalizarJuego() {
     resultadoElement.style.color = "black";
     startButton.disabled = false; // Habilitar el botón "Start"
     stopButton.disabled = true; // Deshabilitar el botón "Stop"
+    okButton.disabled = true; // Deshabilitar el botón "Ok"
+    noButton.disabled = true; // Deshabilitar el botón "No"
     limpiarPantalla();
 }
 
@@ -113,6 +112,8 @@ function detenerJuego() {
     clearInterval(intervalo); // Detener el temporizador
     startButton.disabled = false; // Habilitar el botón "Start"
     stopButton.disabled = true; // Deshabilitar el botón "Stop"
+    okButton.disabled = true; // Deshabilitar el botón "Ok"
+    noButton.disabled = true; // Deshabilitar el botón "No"
     limpiarPantalla();
     resultadoElement.textContent = "Juego detenido";
 }
@@ -121,6 +122,8 @@ function detenerJuego() {
 startButton.addEventListener("click", () => {
     startButton.disabled = true; // Deshabilitar el botón "Start"
     stopButton.disabled = false; // Habilitar el botón "Stop"
+    okButton.disabled = false; // Habilitar el botón "Ok"
+    noButton.disabled = false; // Habilitar el botón "No"
     contadorFrases = 0;
     tiemposReaccion = [];
     respuestasIncorrectas = 0;
