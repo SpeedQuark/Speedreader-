@@ -16,6 +16,21 @@ h1 {
     margin-bottom: 20px;
 }
 
+#start {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+}
+
+#start:hover {
+    background-color: #218838;
+}
+
 .frase {
     font-size: 24px;
     margin: 20px 0;
@@ -43,5 +58,11 @@ h1 {
 .mensaje {
     margin-top: 20px;
     font-size: 20px;
+    font-weight: bold;
+}
+
+.resultado {
+    margin-top: 20px;
+    font-size: 18px;
     font-weight: bold;
 }
