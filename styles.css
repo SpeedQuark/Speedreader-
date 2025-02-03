@@ -16,10 +16,26 @@ h1 {
     margin-bottom: 20px;
 }
 
+.frase {
+    font-size: 24px;
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #start {
     font-size: 18px;
     padding: 10px 20px;
-    margin-bottom: 20px;
+    margin: 20px 0;
     cursor: pointer;
     border: none;
     border-radius: 5px;
@@ -29,15 +45,6 @@ h1 {
 
 #start:hover {
     background-color: #218838;
-}
-
-.frase {
-    font-size: 24px;
-    margin: 20px 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    border-radius: 5px;
 }
 
 .botones button {
