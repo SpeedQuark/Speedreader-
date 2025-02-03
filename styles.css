@@ -19,11 +19,11 @@ h1 {
 .frase {
     font-size: 24px;
     margin: 20px 0;
-    padding: 30px;
+    padding: 20px;
     border: 1px solid #ccc;
     background-color: #fff;
     border-radius: 5px;
-    min-height: 150px;
+    min-height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
